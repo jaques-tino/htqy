@@ -2,6 +2,8 @@
   import { TableColumnData } from '@arco-design/web-vue';
   import { reactive, ref } from 'vue';
 
+  const positions: string[] = ['001'];
+
   const templateBaseForm = reactive({
     file: '',
     name: '',
@@ -14,14 +16,16 @@
     {
       title: '参与主体',
       dataIndex: 'body',
+      slotName: 'body',
     },
     {
       title: '参与方式',
       dataIndex: 'method',
+      slotName: 'method',
     },
     {
       title: '参与要求',
-      dataIndex: 'claim',
+      dataIndex: 'claim_id',
     },
     {
       title: '参与方信息',
@@ -33,7 +37,86 @@
     },
   ];
 
-  const tableData = ref([]);
+  const identitys = [
+    {
+      label: '企业',
+      value: '0',
+    },
+    {
+      label: '个人',
+      value: '1',
+    },
+  ];
+
+  const methods = [
+    {
+      label: '填写',
+      value: 0,
+    },
+    {
+      label: '签署',
+      value: 1,
+    },
+  ];
+
+  const tableData = ref([
+    {
+      id: '001',
+      body: {
+        name: '签署方1',
+        identity_id: '0',
+        isEdit: false,
+      },
+      method: [0, 1],
+      claim_id: 0,
+      information: {
+        name: '',
+        telormail: '',
+        company: '',
+      },
+    },
+  ]);
+
+  const index = ref(1);
+
+  const handleSignatory = (e: string) => {
+    index.value += 1;
+    const createTableData = () => ({
+      id: '002',
+      body: {
+        name: `签署方${index.value}`,
+        identity_id: '1',
+        isEdit: false,
+      },
+      method: [0, 1],
+      claim_id: 0,
+      information: {
+        name: '',
+        telormail: '',
+        company: '',
+      },
+    });
+    switch (e) {
+      case '1':
+        tableData.value = tableData.value.slice(0, 1);
+        break;
+      case '2':
+        if (tableData.value.length > 2) {
+          tableData.value = tableData.value.slice(0, 2);
+          return;
+        }
+        tableData.value.push(createTableData());
+        break;
+      case '3':
+        if (tableData.value.length === 1) {
+          tableData.value.push(createTableData());
+        }
+        tableData.value.push(createTableData());
+        break;
+      default:
+        break;
+    }
+  };
 </script>
 
 <template>
@@ -81,7 +164,7 @@
       </a-card>
       <a-card :bordered="false">
         <h3 class="title">设置签署方</h3>
-        <a-radio-group v-model="signatory">
+        <a-radio-group v-model="signatory" @change="handleSignatory">
           <a-radio value="1">
             <template #radio="{ checked }">
               <a-space
@@ -141,7 +224,42 @@
               :columns="tableColumns"
               :data="tableData"
               style="width: 100%"
-            ></a-table>
+            >
+              <template #body="{ rowIndex }">
+                <a-space>
+                  <a-select v-model="tableData[rowIndex].body.identity_id">
+                    <a-option
+                      v-for="identity in identitys"
+                      :key="identity.value"
+                      :label="identity.label"
+                      :value="identity.value"
+                    />
+                  </a-select>
+                  <span v-show="!tableData[rowIndex].body.isEdit">
+                    {{ tableData[rowIndex].body.name }}
+                  </span>
+                  <a-input
+                    v-if="tableData[rowIndex].body.isEdit"
+                    v-model="tableData[rowIndex].body.name"
+                    v-focus.native
+                    style="width: 120px"
+                    @blur="tableData[rowIndex].body.isEdit = false"
+                  />
+                  <icon-edit
+                    v-else
+                    style="cursor: pointer"
+                    @click="tableData[rowIndex].body.isEdit = true"
+                  />
+                </a-space>
+              </template>
+
+              <template #method="{ rowIndex }">
+                <a-checkbox-group
+                  v-model="tableData[rowIndex].method"
+                  :options="methods"
+                />
+              </template>
+            </a-table>
           </a-form-item>
         </a-form>
       </a-card>

@@ -185,6 +185,12 @@
         flex: 1;
         margin-bottom: 16px;
 
+        thead {
+          tr {
+            height: 40px;
+          }
+        }
+
         .arco-table-container,
         table {
           height: 100%;
