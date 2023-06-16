@@ -1,10 +1,10 @@
-import Mock from 'mockjs';
+import Mock from 'mockjs'
 
-import './user';
-import './message-box';
+import './user'
+import './message-box'
 
-import '@/views/contract/template/mock';
+import '@/views/contract/template/mock'
 
 Mock.setup({
-  timeout: '600-1000',
-});
+  timeout: '600-1000'
+})

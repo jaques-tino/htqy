@@ -15,5 +15,5 @@ export default {
   'template.new.header.next': '下一步',
   'template.new.header.steps1': '设置文件与参与人',
   'template.new.header.steps2': '设置签署与填写位置',
-  'template.new.header.steps3': '启用模板',
-};
+  'template.new.header.steps3': '启用模板'
+}

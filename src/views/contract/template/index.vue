@@ -1,73 +1,73 @@
 <script lang="ts" setup>
-  import { ref, reactive } from 'vue';
+import { ref, reactive } from 'vue'
 
-  const searchFormRef = ref();
-  const searchForm = reactive({
-    name: '',
-    category_id: '',
-    state: '',
-  });
+const searchFormRef = ref()
+const searchForm = reactive({
+  name: '',
+  category_id: '',
+  state: ''
+})
 
-  const categorys = ref([
-    {
-      label: 'A',
-      value: 'a',
-    },
-    {
-      label: 'B',
-      value: 'b',
-    },
-  ]);
+const categorys = ref([
+  {
+    label: 'A',
+    value: 'a'
+  },
+  {
+    label: 'B',
+    value: 'b'
+  }
+])
 
-  const states = ref([
-    {
-      label: '全部',
-      value: '*',
-    },
-    {
-      label: '已启用',
-      value: '1',
-    },
-    {
-      label: '已停用',
-      value: '0',
-    },
-  ]);
+const states = ref([
+  {
+    label: '全部',
+    value: '*'
+  },
+  {
+    label: '已启用',
+    value: '1'
+  },
+  {
+    label: '已停用',
+    value: '0'
+  }
+])
 
-  const tableColumns = [
-    {
-      title: '模板名称',
-      dataIndex: 'name',
-    },
-    {
-      title: '创建人',
-      dataIndex: 'author',
-    },
-    {
-      title: '更新人',
-      dataIndex: 'teamworker',
-    },
-    {
-      title: '时间',
-      dataIndex: 'created_time',
-    },
-    {
-      title: '启用状态',
-      dataIndex: 'state',
-    },
-    {
-      title: '操作',
-      dataIndex: 'operator',
-    },
-  ];
+const tableColumns = [
+  {
+    title: '模板名称',
+    dataIndex: 'name'
+  },
+  {
+    title: '创建人',
+    dataIndex: 'author'
+  },
+  {
+    title: '更新人',
+    dataIndex: 'teamworker'
+  },
+  {
+    title: '时间',
+    dataIndex: 'created_time'
+  },
+  {
+    title: '启用状态',
+    dataIndex: 'state'
+  },
+  {
+    title: '操作',
+    dataIndex: 'operator'
+  }
+]
 
-  const templates = ref([]);
+const templates = ref([])
 
-  const handleSearch = (data: any) => {
-    if (!data.errors) {
-      // 请求数据
-    }
-  };
+const handleSearch = (data: any) => {
+  if (!data.errors) {
+    // 请求数据
+  }
+}
 </script>
 
 <template>
@@ -145,57 +145,57 @@
 </template>
 
 <style lang="less" scoped>
-  #contract-template {
-    height: 100%;
+#contract-template {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    height: 64px;
     display: flex;
-    flex-direction: column;
-
-    .header {
-      height: 64px;
-      display: flex;
-      align-items: center;
-      padding-left: 24px;
-      background-color: var(--color-bg-2);
-      :deep(.arco-form) {
-        .arco-input-wrapper,
-        .arco-select {
-          border-color: var(--color-border-2);
-          background-color: var(--color-bg-2);
-        }
-        .arco-input-wrapper.arco-input-focus,
-        .arco-select-view-single.arco-select-view-focus {
-          border-color: rgb(var(--primary-6));
-          box-shadow: 0 0 0 0 var(--color-primary-light-2);
-        }
+    align-items: center;
+    padding-left: 24px;
+    background-color: var(--color-bg-2);
+    :deep(.arco-form) {
+      .arco-input-wrapper,
+      .arco-select {
+        border-color: var(--color-border-2);
+        background-color: var(--color-bg-2);
       }
-    }
-    .main {
-      flex: 1;
-      margin-top: 2px;
-      padding: 0 24px;
-      display: flex;
-      flex-direction: column;
-      background-color: var(--color-bg-2);
-
-      .operators {
-        padding: 16px 0 14px;
-      }
-
-      :deep(.arco-table) {
-        flex: 1;
-        margin-bottom: 16px;
-
-        thead {
-          tr {
-            height: 40px;
-          }
-        }
-
-        .arco-table-container,
-        table {
-          height: 100%;
-        }
+      .arco-input-wrapper.arco-input-focus,
+      .arco-select-view-single.arco-select-view-focus {
+        border-color: rgb(var(--primary-6));
+        box-shadow: 0 0 0 0 var(--color-primary-light-2);
       }
     }
   }
+  .main {
+    flex: 1;
+    margin-top: 2px;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-bg-2);
+
+    .operators {
+      padding: 16px 0 14px;
+    }
+
+    :deep(.arco-table) {
+      flex: 1;
+      margin-bottom: 16px;
+
+      thead {
+        tr {
+          height: 40px;
+        }
+      }
+
+      .arco-table-container,
+      table {
+        height: 100%;
+      }
+    }
+  }
+}
 </style>

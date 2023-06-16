@@ -1,122 +1,122 @@
 <script lang="ts" setup>
-  import { TableColumnData } from '@arco-design/web-vue';
-  import { reactive, ref } from 'vue';
+import { TableColumnData } from '@arco-design/web-vue'
+import { reactive, ref } from 'vue'
 
-  const positions: string[] = ['001'];
+// const positions: string[] = ['001']
 
-  const templateBaseForm = reactive({
-    file: '',
-    name: '',
-    isSecrey: false,
-  });
+const templateBaseForm = reactive({
+  file: '',
+  name: '',
+  isSecrey: false
+})
 
-  const signatory = ref('1');
+const signatory = ref('1')
 
-  const tableColumns: TableColumnData[] = [
-    {
-      title: '参与主体',
-      dataIndex: 'body',
-      slotName: 'body',
-    },
-    {
-      title: '参与方式',
-      dataIndex: 'method',
-      slotName: 'method',
-    },
-    {
-      title: '参与要求',
-      dataIndex: 'claim_id',
-    },
-    {
-      title: '参与方信息',
-      dataIndex: 'information',
-    },
-    {
-      title: '操作',
-      dataIndex: 'operator',
-    },
-  ];
+const tableColumns: TableColumnData[] = [
+  {
+    title: '参与主体',
+    dataIndex: 'body',
+    slotName: 'body'
+  },
+  {
+    title: '参与方式',
+    dataIndex: 'method',
+    slotName: 'method'
+  },
+  {
+    title: '参与要求',
+    dataIndex: 'claim_id'
+  },
+  {
+    title: '参与方信息',
+    dataIndex: 'information'
+  },
+  {
+    title: '操作',
+    dataIndex: 'operator'
+  }
+]
 
-  const identitys = [
-    {
-      label: '企业',
-      value: '0',
-    },
-    {
-      label: '个人',
-      value: '1',
-    },
-  ];
+const identitys = [
+  {
+    label: '企业',
+    value: '0'
+  },
+  {
+    label: '个人',
+    value: '1'
+  }
+]
 
-  const methods = [
-    {
-      label: '填写',
-      value: 0,
-    },
-    {
-      label: '签署',
-      value: 1,
-    },
-  ];
+const methods = [
+  {
+    label: '填写',
+    value: 0
+  },
+  {
+    label: '签署',
+    value: 1
+  }
+]
 
-  const tableData = ref([
-    {
-      id: '001',
-      body: {
-        name: '签署方1',
-        identity_id: '0',
-        isEdit: false,
-      },
-      method: [0, 1],
-      claim_id: 0,
-      information: {
-        name: '',
-        telormail: '',
-        company: '',
-      },
+const tableData = ref([
+  {
+    id: '001',
+    body: {
+      name: '签署方1',
+      identity_id: '0',
+      isEdit: false
     },
-  ]);
-
-  const index = ref(1);
-
-  const handleSignatory = (e: string) => {
-    index.value += 1;
-    const createTableData = () => ({
-      id: '002',
-      body: {
-        name: `签署方${index.value}`,
-        identity_id: '1',
-        isEdit: false,
-      },
-      method: [0, 1],
-      claim_id: 0,
-      information: {
-        name: '',
-        telormail: '',
-        company: '',
-      },
-    });
-    switch (e) {
-      case '1':
-        tableData.value = tableData.value.slice(0, 1);
-        break;
-      case '2':
-        if (tableData.value.length > 2) {
-          tableData.value = tableData.value.slice(0, 2);
-          return;
-        }
-        tableData.value.push(createTableData());
-        break;
-      case '3':
-        if (tableData.value.length === 1) {
-          tableData.value.push(createTableData());
-        }
-        tableData.value.push(createTableData());
-        break;
-      default:
-        break;
+    method: [0, 1],
+    claim_id: 0,
+    information: {
+      name: '',
+      telormail: '',
+      company: ''
     }
-  };
+  }
+])
+
+const index = ref(1)
+
+const handleSignatory = (e: string) => {
+  index.value += 1
+  const createTableData = () => ({
+    id: '002',
+    body: {
+      name: `签署方${index.value}`,
+      identity_id: '1',
+      isEdit: false
+    },
+    method: [0, 1],
+    claim_id: 0,
+    information: {
+      name: '',
+      telormail: '',
+      company: ''
+    }
+  })
+  switch (e) {
+    case '1':
+      tableData.value = tableData.value.slice(0, 1)
+      break
+    case '2':
+      if (tableData.value.length > 2) {
+        tableData.value = tableData.value.slice(0, 2)
+        return
+      }
+      tableData.value.push(createTableData())
+      break
+    case '3':
+      if (tableData.value.length === 1) {
+        tableData.value.push(createTableData())
+      }
+      tableData.value.push(createTableData())
+      break
+    default:
+      break
+  }
+}
 </script>
 
 <template>
@@ -268,135 +268,135 @@
 </template>
 
 <style lang="less" scoped>
-  #new-template {
-    width: 100%;
-    min-height: 100vh;
-    background-color: var(--color-fill-2);
+#new-template {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-fill-2);
 
-    .header {
+  .header {
+    height: 56px;
+    display: flex;
+    padding-right: 24px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--color-bg-2);
+
+    .close {
+      width: 56px;
       height: 56px;
       display: flex;
-      padding-right: 24px;
+      color: rgb(var(--gray-10));
       align-items: center;
-      justify-content: space-between;
-      background-color: var(--color-bg-2);
+      justify-content: center;
+      background-color: var(--color-neutral-2);
+    }
 
-      .close {
-        width: 56px;
-        height: 56px;
-        display: flex;
-        color: rgb(var(--gray-10));
-        align-items: center;
-        justify-content: center;
-        background-color: var(--color-neutral-2);
-      }
+    .left {
+      display: flex;
+      align-items: center;
 
-      .left {
-        display: flex;
-        align-items: center;
-
-        .title {
-          margin: 0 0 0 24px;
-          color: var(--color-text-1);
-        }
+      .title {
+        margin: 0 0 0 24px;
+        color: var(--color-text-1);
       }
     }
-    .main {
-      width: 1200px;
-      margin: 20px auto 0;
+  }
+  .main {
+    width: 1200px;
+    margin: 20px auto 0;
 
-      .arco-card {
+    .arco-card {
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      .title {
+        display: flex;
+        align-items: center;
+        color: var(--color-text-1);
+
+        &::before {
+          content: '';
+          width: 4px;
+          height: 20px;
+          border-radius: 2px;
+          margin-right: 8px;
+          background-color: rgb(var(--primary-6));
+        }
+      }
+      .file {
+        height: 80px;
+        width: 562px;
+        display: flex;
+        align-items: center;
+        padding-left: 24px;
         margin-bottom: 20px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        .title {
-          display: flex;
-          align-items: center;
-          color: var(--color-text-1);
-
-          &::before {
-            content: '';
-            width: 4px;
-            height: 20px;
-            border-radius: 2px;
-            margin-right: 8px;
-            background-color: rgb(var(--primary-6));
-          }
-        }
-        .file {
-          height: 80px;
-          width: 562px;
-          display: flex;
-          align-items: center;
-          padding-left: 24px;
-          margin-bottom: 20px;
-          box-sizing: border-box;
-          background: var(--color-primary-light-1);
-          border: thin dashed rgb(var(--primary-6));
-        }
-        .arco-form {
-          margin-top: 20px;
-          :deep(.arco-input-wrapper) {
-            width: 490px;
-            border-color: var(--color-border-2);
-            background-color: var(--color-bg-2);
-            &.arco-input-focus {
-              border-color: rgb(var(--primary-6));
-              box-shadow: 0 0 0 0 var(--color-primary-light-2);
-            }
+        box-sizing: border-box;
+        background: var(--color-primary-light-1);
+        border: thin dashed rgb(var(--primary-6));
+      }
+      .arco-form {
+        margin-top: 20px;
+        :deep(.arco-input-wrapper) {
+          width: 490px;
+          border-color: var(--color-border-2);
+          background-color: var(--color-bg-2);
+          &.arco-input-focus {
+            border-color: rgb(var(--primary-6));
+            box-shadow: 0 0 0 0 var(--color-primary-light-2);
           }
         }
       }
     }
   }
+}
 
-  .custom-radio-card {
-    padding: 10px 16px;
-    border: 1px solid var(--color-border-2);
-    border-radius: 4px;
-    box-sizing: border-box;
-    align-items: center;
-  }
+.custom-radio-card {
+  padding: 10px 16px;
+  border: 1px solid var(--color-border-2);
+  border-radius: 4px;
+  box-sizing: border-box;
+  align-items: center;
+}
 
-  .custom-radio-card-mask {
-    height: 14px;
-    width: 14px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 100%;
-    border: 1px solid var(--color-border-2);
-    box-sizing: border-box;
-  }
+.custom-radio-card-mask {
+  height: 14px;
+  width: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  border: 1px solid var(--color-border-2);
+  box-sizing: border-box;
+}
 
-  .custom-radio-card-mask-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 100%;
-  }
+.custom-radio-card-mask-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+}
 
-  .custom-radio-card-title {
-    color: var(--color-text-1);
-    font-size: 14px;
-    font-weight: bold;
-  }
+.custom-radio-card-title {
+  color: var(--color-text-1);
+  font-size: 14px;
+  font-weight: bold;
+}
 
-  .custom-radio-card:hover,
-  .custom-radio-card-checked,
-  .custom-radio-card:hover .custom-radio-card-mask,
-  .custom-radio-card-checked .custom-radio-card-mask {
-    border-color: rgb(var(--primary-6));
-  }
+.custom-radio-card:hover,
+.custom-radio-card-checked,
+.custom-radio-card:hover .custom-radio-card-mask,
+.custom-radio-card-checked .custom-radio-card-mask {
+  border-color: rgb(var(--primary-6));
+}
 
-  .custom-radio-card-checked {
-    background-color: var(--color-primary-light-1);
-  }
+.custom-radio-card-checked {
+  background-color: var(--color-primary-light-1);
+}
 
-  .custom-radio-card:hover .custom-radio-card-title,
-  .custom-radio-card-checked .custom-radio-card-title {
-    color: rgb(var(--primary-6));
-  }
+.custom-radio-card:hover .custom-radio-card-title,
+.custom-radio-card-checked .custom-radio-card-title {
+  color: rgb(var(--primary-6));
+}
 
-  .custom-radio-card-checked .custom-radio-card-mask-dot {
-    background-color: rgb(var(--primary-6));
-  }
+.custom-radio-card-checked .custom-radio-card-mask-dot {
+  background-color: rgb(var(--primary-6));
+}
 </style>

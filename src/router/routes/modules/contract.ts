@@ -1,5 +1,5 @@
-import { DEFAULT_LAYOUT } from '../base';
-import { AppRouteRecordRaw } from '../types';
+import { DEFAULT_LAYOUT } from '../base'
+import { AppRouteRecordRaw } from '../types'
 
 const DASHBOARD: AppRouteRecordRaw = {
   path: '/contract',
@@ -9,7 +9,7 @@ const DASHBOARD: AppRouteRecordRaw = {
     locale: 'menu.contract',
     requiresAuth: true,
     icon: 'icon-layers',
-    order: 0,
+    order: 0
   },
   redirect: '/contract/template',
   children: [
@@ -20,10 +20,10 @@ const DASHBOARD: AppRouteRecordRaw = {
       meta: {
         locale: 'menu.contract.template',
         requiresAuth: true,
-        roles: ['*'],
-      },
-    },
-  ],
-};
+        roles: ['*']
+      }
+    }
+  ]
+}
 
-export default DASHBOARD;
+export default DASHBOARD
