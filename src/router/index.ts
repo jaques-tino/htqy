@@ -1,27 +1,27 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import NProgress from 'nprogress'; // progress bar
-import 'nprogress/nprogress.css';
-import { REDIRECT_MAIN, NOT_FOUND_ROUTE } from '@/router/routes/base';
+import { createRouter, createWebHistory } from 'vue-router'
+import NProgress from 'nprogress' // progress bar
+import 'nprogress/nprogress.css'
+import { REDIRECT_MAIN, NOT_FOUND_ROUTE } from '@/router/routes/base'
 
-import { appRoutes } from './routes';
-import createRouteGuard from './guard';
+import { appRoutes } from './routes'
+import createRouteGuard from './guard'
 
-NProgress.configure({ showSpinner: false }); // NProgress Configuration
+NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
       path: '/',
-      redirect: 'login',
+      redirect: 'login'
     },
     {
       path: '/login',
       name: 'login',
       component: () => import('@/views/login/index.vue'),
       meta: {
-        requiresAuth: false,
-      },
+        requiresAuth: false
+      }
     },
     {
       path: '/contract/template/new',
@@ -31,18 +31,18 @@ const router = createRouter({
         locale: 'menu.contract.template.new',
         requiresAuth: true,
         roles: ['*'],
-        hideInMenu: true,
-      },
+        hideInMenu: true
+      }
     },
     ...appRoutes,
     REDIRECT_MAIN,
-    NOT_FOUND_ROUTE,
+    NOT_FOUND_ROUTE
   ],
   scrollBehavior() {
-    return { top: 0 };
-  },
-});
+    return { top: 0 }
+  }
+})
 
-createRouteGuard(router);
+createRouteGuard(router)
 
-export default router;
+export default router

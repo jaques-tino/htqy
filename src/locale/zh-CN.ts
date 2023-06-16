@@ -1,12 +1,14 @@
-import localeMessageBox from '@/components/message-box/locale/zh-CN';
-import localeLogin from '@/views/login/locale/zh-CN';
+import localeMessageBox from '@/components/message-box/locale/zh-CN'
+import localeLogin from '@/views/login/locale/zh-CN'
 
-import localeWorkplace from '@/views/contract/template/locale/zh-CN';
+import localeContractTemplate from '@/views/contract/template/locale/zh-CN'
+import localeDeveloperError from '@/views/developer/error/locale/zh-CN'
 
-import localeSettings from './zh-CN/settings';
+import localeSettings from './zh-CN/settings'
 
 export default {
   'menu.contract': '合同管理',
+  'menu.developer': '开发管理',
   'menu.server.dashboard': '仪表盘-服务端',
   'menu.server.workplace': '工作台-服务端',
   'menu.server.monitor': '实时监控-服务端',
@@ -24,5 +26,6 @@ export default {
   ...localeSettings,
   ...localeMessageBox,
   ...localeLogin,
-  ...localeWorkplace,
-};
+  ...localeContractTemplate,
+  ...localeDeveloperError
+}

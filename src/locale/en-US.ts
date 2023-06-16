@@ -1,12 +1,14 @@
-import localeMessageBox from '@/components/message-box/locale/en-US';
-import localeLogin from '@/views/login/locale/en-US';
+import localeMessageBox from '@/components/message-box/locale/en-US'
+import localeLogin from '@/views/login/locale/en-US'
 
-import localeWorkplace from '@/views/contract/template/locale/en-US';
+import localeContractTemplate from '@/views/contract/template/locale/en-US'
+import localeDeveloperError from '@/views/developer/error/locale/en-US'
 
-import localeSettings from './en-US/settings';
+import localeSettings from './en-US/settings'
 
 export default {
   'menu.contract': 'Contract',
+  'menu.developer': 'Developer',
   'menu.server.dashboard': 'Dashboard-Server',
   'menu.server.workplace': 'Workplace-Server',
   'menu.server.monitor': 'Monitor-Server',
@@ -24,5 +26,6 @@ export default {
   ...localeSettings,
   ...localeMessageBox,
   ...localeLogin,
-  ...localeWorkplace,
-};
+  ...localeContractTemplate,
+  ...localeDeveloperError
+}
