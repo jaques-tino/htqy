@@ -51,7 +51,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/v1/api': {
-        target: 'http://htqy.sun-land.cn:7001/v1/api',
+        target: 'http://htqy.sun-land.cn:9980/v1/api',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/v1\/api/, '')
       }

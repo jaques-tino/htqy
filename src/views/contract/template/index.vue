@@ -124,7 +124,10 @@ const handleSearch = (data: any) => {
             </a-button>
             <a-button
               type="outline"
-              style="--primary-6: 102, 102, 102; border-color: --color-border-3"
+              style="
+                --primary-6: 102, 102, 102;
+                border-color: var(--color-border-3);
+              "
               @click="searchFormRef.resetFields()"
             >
               {{ $t('template.header.search.button.reset') }}
@@ -157,8 +160,18 @@ const handleSearch = (data: any) => {
     padding-left: 24px;
     background-color: var(--color-bg-2);
     :deep(.arco-form) {
+      .arco-form-item {
+        margin-bottom: 0;
+        align-items: center;
+        .arco-form-item-label-col {
+          line-height: 40px;
+        }
+      }
+
       .arco-input-wrapper,
       .arco-select {
+        width: 200px;
+        height: 40px;
         border-color: var(--color-border-2);
         background-color: var(--color-bg-2);
       }
@@ -181,20 +194,8 @@ const handleSearch = (data: any) => {
       padding: 16px 0 14px;
     }
 
-    :deep(.arco-table) {
-      flex: 1;
+    .arco-table {
       margin-bottom: 16px;
-
-      thead {
-        tr {
-          height: 40px;
-        }
-      }
-
-      .arco-table-container,
-      table {
-        height: 100%;
-      }
     }
   }
 }
